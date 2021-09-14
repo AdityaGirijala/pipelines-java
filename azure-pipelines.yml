@@ -6,8 +6,20 @@
 trigger:
 - master
 
+strategy:
+  matrix:
+    jdk10_linux:
+      imageName: "ubuntu-latest"
+      jdk_version: "1.10"
+    mac:
+      imageName: "macOS-latest"
+    jdk11_windows:
+      imageName: "windows-latest"
+      jdk_version: "1.11"
+  maxParallel: 3
+
 pool:
-  vmImage: ubuntu-latest
+  vmImage: $(imageName)
 
 steps:
 - task: Maven@3
